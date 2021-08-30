@@ -6,18 +6,22 @@ const withAuth = require('../utils/auth');
 router.use('/api', apiRouter);
 
 router.get('/', async (req, res) => {
-    // Get all notes and JOIN with user data
-    const noteData = await Note.findAll().catch((err) => {
-      res.json(err);
-    });
-
+  // Get all notes and JOIN with user data
+  try{ 
+    const noteData = await Note.findAll();
+    
     // Serialize data so the template can read it
     const notes = noteData.map((note) => note.get({ plain: true }));
+  
+  //    for testing with Insomnia
+  //    res.status(200).json(notes);
 
-//    res.status(200).json(notes);
-
-//    Pass serialized data and session flag into template
+  //    Pass serialized data and session flag into template
     res.render('homepage', { notes });
+
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 router.get('/note/:id', async (req, res) => {
