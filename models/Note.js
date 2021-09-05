@@ -16,7 +16,12 @@ Note.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
+    },
+    date: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: DataTypes.NOW
     },
     user_id: {
       type: DataTypes.INTEGER,

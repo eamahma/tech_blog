@@ -1,9 +1,13 @@
 
-{{#if posts.length}}
+{{#if notes.length}}
 <section>
   <h2>Your Posts</h2>
-    {{#each posts as |post|}}
-      {{> dashboard-postinfo post}}
+    {{#each notes as |note|}}
+      <div class="card">
+    <div class="card-header">
+        <h4><a class="link" href="/dashboard/edit/{{id}}">{{title}}</a></h4>
+    </div>
+</div>
     {{/each}}
 
 </section>

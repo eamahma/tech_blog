@@ -8,10 +8,21 @@ router.use('/api', apiRouter);
 router.get('/', async (req, res) => {
   // Get all notes and JOIN with user data
   try{ 
-    const noteData = await Note.findAll();
+//    const noteData = await Note.findAll();
+    const notes = (await Note.findAll({
+      include: [User]
+    })).map(noteData => {
+      const note = noteData.get();
+      const user = note.user.get();
+      return {
+        ...note,
+        user
+      }
+    });
     
     // Serialize data so the template can read it
-    const notes = noteData.map((note) => note.get({ plain: true }));
+//    const notes = noteData.map((note) => note.get({ plain: true }));
+
   
   //    for testing with Insomnia
   //    res.status(200).json(notes);
