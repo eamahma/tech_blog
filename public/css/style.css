@@ -149,6 +149,10 @@ h {
   padding: 1rem;
 }
 
-#post-title {
+#logout {
+  color: whitesmoke;
+}
+
+.title {
   background-color: #231010;
 }

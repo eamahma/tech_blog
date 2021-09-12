@@ -3,7 +3,9 @@ async function createPostHandler(event) {
  
     const title = document.querySelector("#post-title").value.trim();
     const body = document.querySelector("#post-body").value.trim();
-   
+
+    console.log(title);
+    console.log(body);
     if (body) {
       //make sure we have comment text
       const response = await fetch("/api/posts", {
