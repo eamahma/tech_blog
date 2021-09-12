@@ -1,13 +1,31 @@
 const User = require('./User');
-const Note = require('./Note');
+const Comment = require("./Comment");
+const Post = require("./Post");
 
-User.hasMany(Note, {
-  foreignKey: 'user_id',
-  onDelete: 'CASCADE'
+
+User.hasMany(Post, {
+  foreignKey: "user_id",
+});
+Post.belongsTo(User, {
+  foreignKey: "user_id",
 });
 
-Note.belongsTo(User, {
-  foreignKey: 'user_id'
+Comment.belongsTo(User, {
+  foreignKey: "user_id",
 });
 
-module.exports = { User, Note };
+// Comment.belongsTo(Post, {
+//   foreignKey: "post_id",
+// });
+
+User.hasMany(Comment, {
+  foreignKey: "user_id",
+});
+
+Post.hasMany(Comment, {
+  foreignKey: "post_id",
+});
+
+
+//add genre when firing
+module.exports = { User, Post, Comment};

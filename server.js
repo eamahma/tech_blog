@@ -1,51 +1,61 @@
-// Dependencies
-const express = require('express');
-const exphbs = require('express-handlebars');
 const path = require('path');
-
-// ++++
+const exphbs = require('express-handlebars');
+const express = require('express');
 const session = require('express-session');
-const sequelize = require('./config/connection');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-const router = require('./controllers');
+const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 
+//const handlebars = require('express-handlebars');
+const sequelize = require('./config/connection');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-async function init() {
-  const app = express();
-  const PORT = process.env.PORT || 3001;
+const app = express();
+const PORT = process.env.PORT || 3001;
 
-  app.use(session({
-      secret: process.env.SESSION_SECRET,
-      cookie: {
-          maxAge: 1000 * 60 * 60 * 24
-      },
-      resave: false,
-      saveUninitialized: true,
-      store: new SequelizeStore({
-          db: sequelize
-      })
-  }));
 
-  const hbs = exphbs.create({ helpers });
-  app.engine('handlebars', hbs.engine);
-  app.set('view engine', 'handlebars');
 
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
+// Set up Handlebars.js engine with custom helpers
+const hbs = exphbs.create({ helpers });
 
-  app.use(express.static(path.join(__dirname, 'public')));
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
 
-  app.use(router);
+app.use(session(sess));
 
-  try {
-      await sequelize.sync({ force: false });
-      app.listen(PORT, () => {
-          console.log(`Server listening on port ${PORT}`);
-      });
-  } catch (err) {
-      console.error(err);
-  }
-}
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+//app.engine('html', hbs.engine);
 
-init();
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//Important Note: our /js routing is a bit confusing due to the public/css file share. Keep this in mind when firing new routes!
+
+app.use(express.static(path.join(__dirname, 'public/css')));
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+//added public/css to route.
+app.use(express.static(path.join(__dirname, 'public/css')));
+
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', routes);
+
+
+
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});

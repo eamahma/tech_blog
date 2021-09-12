@@ -1,39 +1,17 @@
-/* header, .project:not(:last-child) {
-  border-bottom: 1px solid #ccc;
-}
-
-.no-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  color: #1b89bc;
-  text-decoration: none;
-  font-size: 100%;
-}
-
-.no-button:hover {
-  color: #065b83;
-  text-decoration: underline;
-}
-
-.dollar-amount {
-  color: #056605;
-  font-weight: bold;
-  margin-left: -5px;
-} */
-
 body {
-  color: #D9EAD3;
+  color: whitesmoke;
 }
 
 p, h3 {
   padding: .5em;
+  border-radius: .2rem;
+  margin: .5rem;
 }
 
 nav {
-  background-color: #231010;
-  color: #D9EAD3;
+  background-color:#231010;
+  /* color:#031426; */
+  color:white;
   font-weight: 700;
   padding: 1em;
   margin-bottom: 2em;
@@ -44,8 +22,8 @@ nav div {
 }
 
 #banner {
-  background-color: #D9EAD3;
-  color: #231010;
+  background-color:#D9EAD3;
+  color:#231010;
   font-weight:900;
   margin-bottom: 1.5em;
   margin-left: 1em;
@@ -59,13 +37,18 @@ nav div {
   margin-right: auto !important;
   text-align: left;
   margin-bottom: 1em;
-  color: #231010;
-  border: solid #231010;
+  color:#000000;
+  border: solid #031426;
+  border-radius: .5rem;
+  box-shadow: 5px 5px 5px #000000;
+  
 }
 
-.center-item-h h3 {
-  background-color: #231010;
-  color: #D9EAD3;
+.center-item-h h3,
+.center-item-h h5 {
+  /* background-color:#031426; */
+  color:whitesmoke;
+  display: inline;
 }
 
 .input {
@@ -74,3 +57,98 @@ nav div {
   /* padding: .5em; */
 }
 
+.pure-menu-link:hover, .pure-menu-link:active {
+  text-decoration: underline;
+}
+
+.pure-menu-link:link {
+  color: white;
+}
+
+.pure-menu-link:visited {
+  color: white;
+}
+
+/* h2 {
+  padding: .5rem;
+  background-color: #031426;
+  color: #231010;
+  text-align-last: center;
+} */
+
+canvas {
+  border-style: solid;
+  margin: 2rem;
+  padding: 2rem;
+  border-radius: 2rem;
+  height: 400px;
+  width: 500px;
+}
+
+/* footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #231010;
+  color: #000000;
+  text-align: center;
+} */
+
+label {
+  color: #000000;
+}
+
+.button {
+  border: solid;
+  border-radius: 4px;
+}
+
+/* h1 {
+  color: white;
+  text-align-last: left;
+} */
+
+/* h4 {
+  color: #031426;
+} */
+
+p {
+  color: #231010;
+  margin: 1rem;
+  padding: .5rem; 
+}
+
+.card {
+  border-style: solid;
+  border-radius: 1rem;
+  border-color: #231010;
+  margin: 1rem;
+  padding: 1rem;
+  /* background-color: #231010; */
+  box-shadow: 5px 5px 5px #000000;
+}
+/* 
+.post-header {
+  margin: 1rem;
+  border-style: solid;
+  border-radius: .5rem;
+  border-color: #031426;
+  padding: .5rem;
+  background-color: #031426;
+} */
+
+h {
+  color: #231010;
+  margin: 1rem;
+  padding: .5rem; 
+}
+
+.pure-form {
+  margin: 1rem;
+  padding: 1rem;
+}
+
+#post-title {
+  background-color: #231010;
+}
