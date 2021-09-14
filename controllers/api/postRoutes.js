@@ -105,10 +105,10 @@ router.delete("/:id", (req, res) => {
     },
   })
     .then((dbPostData) => {
-      if (!dbPostData) {
-        res.status(404).json({ message: "No Post found with this id" });
-        return;
-      }
+      // if (!dbPostData) {
+      //   res.status(404).json({ message: "No Post found with this id" });
+      //   return;
+      // }
       res.json(dbPostData);
     })
     .catch((err) => {
