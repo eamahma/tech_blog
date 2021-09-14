@@ -1,6 +1,21 @@
 
 <div id="testDiv2">
 <div class="card single-post-padding">
+
+    {{!-- If this is my post i can edit and delete it --}}
+    {{#if currentUser}}
+    <form class="pure-form">
+        <fieldset class="pure-group">
+            <input type="text" name="title" class="pure-input-1-2" id="post-title" value="{{post.title}}"/>
+            <br><br>
+            <textarea class="pure-input-1-2" name="body" id="post-body">{{post.body}}</textarea>
+        </fieldset>
+        <button type="submit" class="pure-button pure-input-1-2 pure-button-default" id="edit-btn">Update!</button>
+    </form>
+    {{!-- <button id="edit-btn">Edit</button> --}}
+    <button id="delete-btn">Delete</button>
+    <script src="/js/edit-delete-post.js"> </script>
+    {{else}}
     <div class="title">
         <h4 id="post-title" class="post-header">{{post.title}} </h4>
         <h5>Posted by {{post.user.name}} on {{format_date post.date}}</h5>
@@ -8,10 +23,6 @@
     <div class="container">
         <p id="post-body" class="post-text post-text-padding">{{post.body}}</p>
     </div>
-    {{!-- If this is my post i can edit and delete it --}}
-    {{#if currentUser}}
-    <button id="edit-btn">Edit</button>
-    <button id="delete-btn">Delete</button>
     {{/if}}
 </div>
 {{!-- Add Comment --}}
@@ -33,6 +44,7 @@
 <script src="/js/viewPost.js"></script>
 {{#if currentUser}}
 <script src="/js/edit-delete-post.js"> </script>
+{{else}}
 {{/if}}
 
 </div>
